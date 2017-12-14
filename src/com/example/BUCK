@@ -1,0 +1,18 @@
+include_defs('//tools/tools.def')
+
+java_library(
+	name = 'greeter',
+	srcs = glob(['*.java']),
+	deps = [
+		'//lib:commons-lang3',
+	],
+)
+
+jar(
+	name = 'build_tar',
+	filename = 'greeter.tar',
+	libs = [
+		':greeter',
+		'//lib:commons-lang3',
+	],
+)

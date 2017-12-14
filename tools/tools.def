@@ -1,0 +1,15 @@
+def jar(
+    name,
+    filename = '',
+    libs = []):
+    files = ['cp $(location %s) $TMP/lib;' % (l) for l in libs]
+    cmd = [
+        'mkdir $TMP/lib;',
+    ] + files + [
+        'tar cvf $OUT -C $TMP lib'
+    ]
+    genrule(
+        name = name,
+        bash = ' '.join(cmd),
+        out = filename or ('%s.jar' % name)
+    ) 
